@@ -1,0 +1,278 @@
+<!-- 
+UX Designer Portfolio Template (Single-File HTML)
+Inspired by: https://www.proclaim365.com/biblein365 (Light gray, concrete texture, and floating content)
+Style notes: Uses a light, textured background with a dark primary color and a gold accent for a professional, high-end feel.
+-->
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Portfolio Template</title>
+    <!-- Load Inter font and Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font and custom light, textured background */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            /* Light concrete simulation */
+            background-color: #f0f0f0; 
+            /* Subtle texture for the concrete look (Dark noise on light background) */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' opacity='0.03'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%23212121' filter='url(%23f)'/%3E%3C/svg%3E");
+            /* This is the key to the scrolling "flow" effect (parallax) */
+            background-attachment: fixed; 
+        }
+
+        /* Styling for the content blocks that float above the background */
+        .floating-content-block {
+            background-color: #ffffff; /* White block */
+            /* Add a soft shadow to make it float */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.05); /* Very light border */
+        }
+    </style>
+    <script>
+        // Customizing Tailwind to match the inspired light color palette (Dark Gold/Mustard)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ux-primary': '#212121', /* Dark text/primary element color (Inverted) */
+                        'ux-accent': '#C09A4D', /* Dark Gold/Mustard accent color */
+                        'ux-background': '#f0f0f0', /* Light concrete background color */
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-ux-primary antialiased">
+
+    <!-- 1. Navigation Header - Light, semi-transparent to float above content -->
+    <header class="sticky top-0 z-10 bg-ux-background/90 backdrop-blur-sm shadow-md shadow-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo/Name -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-2xl font-black tracking-wider uppercase text-ux-primary hover:text-ux-accent transition duration-300">
+                        Haylie Crowe
+                    </a>
+                </div>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#projects" class="text-sm font-medium text-gray-600 hover:text-ux-accent transition duration-300 uppercase tracking-wider">Work</a>
+                        <a href="#about" class="text-sm font-medium text-gray-600 hover:text-ux-accent transition duration-300 uppercase tracking-wider">About</a>
+                        <a href="#contact" class="text-sm font-medium text-gray-600 hover:text-ux-accent transition duration-300 uppercase tracking-wider">Contact</a>
+                    </div>
+                </nav>
+                <!-- Mobile Menu Button (for JS toggle) -->
+                <button id="mobile-menu-button" type="button" class="md:hidden text-ux-primary hover:text-ux-accent focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                    <!-- Hamburger Icon -->
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-inner">
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-ux-primary hover:bg-gray-100 uppercase">Work</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-ux-primary hover:bg-gray-100 uppercase">About</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-ux-primary hover:bg-gray-100 uppercase">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. Hero Section -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-28">
+            <div class="text-center md:text-left md:max-w-4xl mx-auto">
+                <p class="text-lg text-gray-600 mb-4 tracking-widest uppercase">UX Designer & Strategist</p>
+                <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight text-ux-primary">
+                    Designing <span class="text-ux-accent">intuitive</span> experiences for a digital future.
+                </h1>
+                <p class="mt-8 text-xl text-gray-700 max-w-2xl mx-auto md:mx-0">
+                    I combine research, empathy, and data to solve complex user problems and deliver measurable business outcomes. Based in San Francisco.
+                </p>
+                <a href="#projects" class="mt-10 inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-ux-primary bg-ux-accent hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                    View Case Studies
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. Projects Section - Now using the floating-content-block class -->
+        <section id="projects" class="py-20 floating-content-block shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center mb-16 text-ux-primary border-b-2 border-ux-accent inline-block pb-1">Featured Work</h2>
+
+                <!-- Project Card 1: E-commerce Checkout Redesign -->
+                <div class="grid md:grid-cols-2 gap-12 lg:gap-20 mb-32 items-center">
+                    <!-- Mockup/Image -->
+                    <div class="order-1 md:order-none rounded-xl shadow-2xl overflow-hidden transform hover:scale-[1.01] transition duration-500">
+                        <!-- PLACEHOLDER VISUAL: Dark Gold Mockup (Text changed to be visible on dark) -->
+                        <img src="https://placehold.co/1200x800/C09A4D/212121?text=E-Commerce+App+Mockup" alt="E-commerce Checkout Redesign Mockup" class="w-full h-auto object-cover">
+                    </div>
+                    <!-- Details -->
+                    <div class="space-y-6 order-2 md:order-none">
+                        <span class="text-sm font-semibold uppercase text-ux-accent tracking-widest">UX Research, UI Design</span>
+                        <h3 class="text-4xl font-bold text-ux-primary">Optimizing Conversions: E-commerce Checkout Redesign</h3>
+                        <p class="text-gray-700 text-lg">
+                            A deep dive into reducing cart abandonment for a major fashion retailer. We leveraged A/B testing and heuristic analysis to streamline the payment flow, resulting in a 15% increase in completed transactions.
+                        </p>
+                        <ul class="flex flex-wrap gap-3 text-sm font-medium text-gray-700">
+                            <li class="px-3 py-1 bg-gray-200 rounded-full">Wireframing</li>
+                            <li class="px-3 py-1 bg-gray-200 rounded-full">Prototyping (Figma)</li>
+                            <li class="px-3 py-1 bg-gray-200 rounded-full">User Interviews</li>
+                        </ul>
+                        <a href="#" class="text-lg font-semibold text-ux-accent flex items-center group">
+                            View Full Case Study
+                            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: SaaS Dashboard Information Architecture (Alternating layout) -->
+                <div class="grid md:grid-cols-2 gap-12 lg:gap-20 mb-32 items-center">
+                    <!-- Details -->
+                    <div class="space-y-6 order-2 md:order-1">
+                        <span class="text-sm font-semibold uppercase text-ux-accent tracking-widest">Information Architecture, Strategy</span>
+                        <h3 class="text-4xl font-bold text-ux-primary">Streamlining Data: SaaS Dashboard IA Overhaul</h3>
+                        <p class="text-gray-700 text-lg">
+                            We tackled information overload in a complex B2B SaaS platform. Through card sorting and tree testing, we restructured the navigation and layout, significantly decreasing task completion time for power users.
+                        </p>
+                        <ul class="flex flex-wrap gap-3 text-sm font-medium text-gray-700">
+                            <li class="px-3 py-1 bg-gray-200 rounded-full">Card Sorting</li>
+                            <li class="px-3 py-1 bg-gray-200 rounded-full">Data Visualization</li>
+                            <li class="px-3 py-1 bg-gray-200 rounded-full">Usability Testing</li>
+                        </ul>
+                        <a href="#" class="text-lg font-semibold text-ux-accent flex items-center group">
+                            View Full Case Study
+                            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                    <!-- Mockup/Image -->
+                    <div class="order-1 md:order-2 rounded-xl shadow-2xl overflow-hidden transform hover:scale-[1.01] transition duration-500">
+                        <!-- PLACEHOLDER VISUAL: Dark Gray Mockup (Text changed to be visible on dark) -->
+                        <img src="https://placehold.co/1200x800/212121/C09A4D?text=SaaS+Dashboard+Wireframe" alt="SaaS Dashboard Information Architecture Mockup" class="w-full h-auto object-cover">
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Mobile App Onboarding -->
+                <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <!-- Mockup/Image -->
+                    <div class="order-1 md:order-none rounded-xl shadow-2xl overflow-hidden transform hover:scale-[1.01] transition duration-500">
+                        <!-- PLACEHOLDER VISUAL: Dark Gold Mockup (Text changed to be visible on dark) -->
+                        <img src="https://placehold.co/1200x800/C09A4D/212121?text=Mobile+App+Onboarding+Flow" alt="Mobile App Onboarding Flow Mockup" class="w-full h-auto object-cover">
+                    </div>
+                    <!-- Details -->
+                    <div class="space-y-6 order-2 md:order-none">
+                        <span class="text-sm font-semibold uppercase text-ux-accent tracking-widest">Mobile UX, Accessibility</span>
+                        <h3 class="text-4xl font-bold text-ux-primary">First Impressions: Mobile App Onboarding Flow</h3>
+                        <p class="text-gray-700 text-lg">
+                            Designed a friction-less and accessible onboarding experience for a new wellness app. This effort led to a 22% reduction in initial churn and improved feature adoption among first-time users.
+                        </p>
+                        <ul class="flex flex-wrap gap-3 text-sm font-medium text-gray-700">
+                            <li class="px-3 py-1 bg-gray-200 rounded-full">A11y Standards</li>
+                            <li class="px-3 py-1 bg-gray-200 rounded-full">Flow Mapping</li>
+                            <li class="px-3 py-1 bg-gray-200 rounded-full">Motion Design</li>
+                        </ul>
+                        <a href="#" class="text-lg font-semibold text-ux-accent flex items-center group">
+                            View Full Case Study
+                            <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. About Section - Profile and Philosophy -->
+        <section id="about" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4 text-ux-primary border-b-2 border-ux-accent inline-block pb-1">About Haylie Crowe</h2>
+            </div>
+            <!-- Profile Picture and Bio -->
+            <div class="p-8 sm:p-12 rounded-xl shadow-lg mb-20 grid lg:grid-cols-3 gap-10 items-center floating-content-block">
+                <div class="lg:col-span-1 flex justify-center lg:justify-start">
+                    <!-- Haylie Crowe Profile Picture -->
+                    <img src="uploaded:IMG_8487.jpg-79f49c3b-6029-41e0-be7d-cc24f304fb02" alt="Haylie Crowe Profile Picture" class="w-56 h-56 object-cover rounded-full shadow-xl ring-4 ring-ux-accent/50">
+                </div>
+                <div class="lg:col-span-2 text-center lg:text-left">
+                    <p class="text-xl font-semibold text-ux-primary mb-4">Hi, I'm Haylie. I turn complexity into clarity.</p>
+                    <p class="text-gray-700 leading-relaxed">
+                        I am a multidisciplinary UX Designer with 5+ years of experience specializing in **enterprise SaaS platforms** and **mobile application accessibility**. My core mission is to bridge the gap between user needs and business objectives by leading comprehensive research, strategic system design, and iterative prototyping. I believe the most effective solutions are simple, ethical, and rigorously tested. Let's create impactful digital products together.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-bold mb-4 text-ux-primary">My Core Principles</h3>
+            </div>
+            <!-- Philosophy Grid -->
+            <div class="grid md:grid-cols-3 gap-10 text-center">
+                <div class="p-6 rounded-xl shadow-md floating-content-block">
+                    <h4 class="text-2xl font-bold text-ux-accent mb-3">Empathy First</h4>
+                    <p class="text-gray-700">All successful design starts with a deep, unbiased understanding of the user's needs, motivations, and pain points.</p>
+                </div>
+                <div class="p-6 rounded-xl shadow-md floating-content-block">
+                    <h4 class="text-2xl font-bold text-ux-accent mb-3">Data-Informed</h4>
+                    <p class="text-gray-700">Hypotheses must be validated. I prioritize qualitative and quantitative metrics to ensure design decisions are impactful.</p>
+                </div>
+                <div class="p-6 rounded-xl shadow-md floating-content-block">
+                    <h4 class="text-2xl font-bold text-ux-accent mb-3">Systemic Thinking</h4>
+                    <p class="text-gray-700">I look beyond the feature to design cohesive, scalable experiences that fit within the broader product ecosystem.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 5. Footer / Contact Section (Dark color for a strong anchor) -->
+    <footer id="contact" class="bg-[#212121] text-gray-200 py-16 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:justify-between md:items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-3xl font-bold text-white mb-2">Let's build something great.</h3>
+                    <p class="text-lg text-gray-400">I'm currently open to new opportunities. Say hello!</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="mailto:your.email@example.com" class="inline-flex justify-center items-center px-6 py-3 border-2 border-ux-accent text-base font-medium rounded-full text-ux-primary bg-ux-accent hover:bg-opacity-90 transition duration-300">
+                        Email Me
+                    </a>
+                    <a href="#" class="inline-flex justify-center items-center px-6 py-3 border-2 border-gray-600 text-base font-medium rounded-full text-gray-400 hover:border-white hover:text-white transition duration-300">
+                        Connect on LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-500">
+                &copy; 2024 Haylie Crowe. UX Portfolio Template.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+
+            button.addEventListener('click', () => {
+                // Toggles the aria-expanded attribute and the 'hidden' class for the mobile menu
+                const isExpanded = button.getAttribute('aria-expanded') === 'true' || false;
+                button.setAttribute('aria-expanded', !isExpanded);
+                menu.classList.toggle('hidden');
+            });
+
+            // Close menu when a link is clicked (for smoother navigation on mobile)
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    button.setAttribute('aria-expanded', 'false');
+                    menu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
